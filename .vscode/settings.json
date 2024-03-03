@@ -1,13 +1,21 @@
 {
   "cSpell.words": [
+    "bunnrui",
     "cmap",
+    "colormesh",
+    "figsize",
     "hstack",
     "imread",
+    "imshow",
+    "meshgrid",
     "mplot",
+    "nenn",
     "pcolormesh",
     "setosa",
+    "sizelist",
     "toolkits",
     "virginica",
+    "whitegrid",
     "xlabel",
     "ylabel"
   ]
