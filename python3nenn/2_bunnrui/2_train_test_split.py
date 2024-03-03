@@ -45,7 +45,7 @@ print(model.fit(X_train,y_train)) #学習用データを渡して学習する fi
 #! 3.予測する
 predicted=model.predict(X_test) #テストデータを渡して予測する
 df=pd.DataFrame(X_test)
-df["target"]=predicted
+df["target"]=predicted #与えられたxに対して学習後にyを予測する
 df0=df[df["target"]==0]
 df1=df[df["target"]==1]
 sns.set(style="whitegrid")
@@ -53,45 +53,50 @@ plt.scatter(df0[0],df0[1],color="blue",alpha=0.5)
 plt.scatter(df1[0],df1[1],color="red",alpha=0.5)
 plt.title("predicted")
 plt.savefig(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\predicted.png")
-# plt.show()
+#実際に値を代入して予測させる
+print("1,3:",model.predict([[1,3]])) #説明変数が1,3のときの目的変数を予測する 0:blue 1:red
+print("1,2:",model.predict([[1,2]])) #説明変数が1,1のときの目的変数を予測する
+plt.show()
 
 
 #! 4.正答率を求める
-from sklearn.metrics import accuracy_score #accuracy_score:正答率を求める
+from sklearn.metrics import accuracy_score #accuracy_score:正答率を求める metrics:測定
 score=accuracy_score(y_test,predicted) #(正解データ,予測データ)
 print("正答率",score*100,"%")
 
-#横3列でグラフを表示
-fig, axes = plt.subplots(1, 3, figsize=(15, 5))  # Create a figure with 3 subplots
-# Load and display the images
-img_train = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\train_75%.png")
-img_test = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\test_25%.png")
-img_predicted = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\predicted.png")
 
-fig, axes = plt.subplots(1, 3, figsize=(15, 5))  # Create a figure with 3 subplots
 
-# Load and display the images
-img_train = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\train_75%.png")
-img_test = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\test_25%.png")
-img_predicted = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\predicted.png")
+# #横3列でグラフを表示
+# fig, axes = plt.subplots(1, 3, figsize=(15, 5))  # Create a figure with 3 subplots
+# # Load and display the images
+# img_train = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\train_75%.png")
+# img_test = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\test_25%.png")
+# img_predicted = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\predicted.png")
 
-axes[0].imshow(img_train)
-axes[0].set_title("Train: 75%")
-axes[0].axis("off")
+# fig, axes = plt.subplots(1, 3, figsize=(15, 5))  # Create a figure with 3 subplots
 
-axes[1].imshow(img_test)
-axes[1].set_title("Test: 25%")
-axes[1].axis("off")
+# # Load and display the images
+# img_train = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\train_75%.png")
+# img_test = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\test_25%.png")
+# img_predicted = plt.imread(r"C:\Users\1612h\Machine_learning\python3nenn\2_bunnrui\img\predicted.png")
 
-axes[2].imshow(img_predicted)
-axes[2].set_title("Predicted")
-axes[2].axis("off")
+# axes[0].imshow(img_train)
+# axes[0].set_title("Train: 75%")
+# axes[0].axis("off")
 
-plt.tight_layout()
-plt.show()
+# axes[1].imshow(img_test)
+# axes[1].set_title("Test: 25%")
+# axes[1].axis("off")
 
-# Remove the axis labels
-for ax in axes:
-    ax.axis("off")
+# axes[2].imshow(img_predicted)
+# axes[2].set_title("Predicted")
+# axes[2].axis("off")
+
+# plt.tight_layout()
+# plt.show()
+
+# # Remove the axis labels
+# for ax in axes:
+#     ax.axis("off")
 
 plt.show()

@@ -1,8 +1,10 @@
 {
   "cSpell.words": [
+    "cmap",
     "hstack",
     "imread",
     "mplot",
+    "pcolormesh",
     "setosa",
     "toolkits",
     "virginica",
