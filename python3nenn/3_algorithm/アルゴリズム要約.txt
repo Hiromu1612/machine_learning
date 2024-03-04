@@ -21,9 +21,10 @@
             LogisticRegression(): 線形回帰の分類ver.
 
         ・SVM(サポートベクターマシン):なるべく公平な境界線を引いて分類する
-            svm.SVC(kernel="rbf・liner", gamma="1・scale・auto"):
+            svm.SVC(kernel="rbf・liner", gamma="1・scale・auto"): 
             サポートベクトル(境界線に近い点)からのマージン(余白)の中点距離 ソフトマージンは現実的に誤差を考慮 カーネルトリックで非線形でも線を引ける
-
+            radial basis function(放射基底関数)    
+            
         ・決定木:2択の質問で分岐を繰り返して分類する
             DecisionTreeClassifier(max_depth=None, random_state=0): plot_treeでツリー構造を描画 左からYes,Noの順
 
