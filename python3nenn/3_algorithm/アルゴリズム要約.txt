@@ -40,3 +40,8 @@
             KMeans(n_clusters=3)
             1. 指定したグループ数の仮の重心をランダムに決める
             2. 各グループ(cluster)の平均値を求めて、重心を変更する これを繰り返す
+
+次元削減(教師なし学習)
+        ・主成分分析(PCA)という統計手法で、沢山の特徴量をまとめて次元削減できる 64→3次元にしてAxes3Dでグラフ化できる
+        pca=decomposition.PCA(n_components=3)
+        features3=pca.fi_transform(X)
