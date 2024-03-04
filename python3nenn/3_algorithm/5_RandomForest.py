@@ -1,39 +1,33 @@
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt, pandas as pd, seaborn as sns, numpy as np
 
-
 #! 1.データを用意
 X,y=make_blobs(
-    random_state=5,
-    n_features=2, #特徴量
+    random_state=0,
+    n_features=2,
     centers=3, #塊
-    cluster_std=1, #ばらつき(標準偏差)
-    n_samples=300
+    cluster_std=0.6, #ばらつき(標準偏差) cluster:塊
+    n_samples=200
 )
 from sklearn.model_selection import train_test_split #train_test_split:学習データ(75%)とテストデータ(25%)に分割する 問題X(説明変数)と答えy(目的変数)
 X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=0) #random_state=0で毎回同じデータが生成されるようにする
 
 
-
-
 #! 2.学習モデルを作る
-from sklearn.linear_model import LogisticRegression
-model=LogisticRegression() 
-print(model.fit(X_train,y_train)) #学習用データを渡して学習する fit:学習する SVC()だけで中のパラメータが表示されない場合もある
-
+from sklearn.ensemble import RandomForestClassifier
+model=RandomForestClassifier() #n_estimators:決定木の数 random_state:乱数の種
+model.fit(X_train,y_train) #学習用データを渡して学習する fit:学習する 
 
 
 #! 3.予測する
-predicted=model.predict(X_test)
-
+predicted=model.predict(X_test) 
 
 
 #! 4.評価する
+predicted=model.predict(X_test)
 from sklearn.metrics import accuracy_score #accuracy_score:正解率
 score=accuracy_score(y_test,predicted) #正解率
 print("正解率:",score*100,"%")
-
-
 
 
 #! 5.分類の境界を描画する
@@ -62,4 +56,14 @@ def plot_boundary(model, X, Y, target, xlabel, ylabel): #分類を行う学習�
     plt.ylabel(ylabel)
     plt.show()
 
-plot_boundary(model,df[0],df[1],y_test,"df [0]","df [1]")
+plot_boundary(model,df[0],df[1],y_test,"df [0]","df [1]") #分類を行う学習済みモデル、特徴量X、特徴量Y、分類の値、x軸のラベル、y軸のラベル model=Noneで散布図だけを描画
+
+
+# #! 6.木の構造を描画する
+# from sklearn.tree import plot_tree
+# plt.figure(figsize=(8,8))
+# plot_tree(model.estimators_[0],filled=True,feature_names=["X","Y"],class_names=["0","1","2"])
+# plt.show()
+# from dtreeviz.trees import dtreeviz
+# viz=dtreeviz(model,X_train,y_train,feature_names=["X","Y"],class_names=["0","1","2"])
+# viz

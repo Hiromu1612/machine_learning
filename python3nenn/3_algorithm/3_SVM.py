@@ -1,39 +1,33 @@
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt, pandas as pd, seaborn as sns, numpy as np
 
-
 #! 1.データを用意
 X,y=make_blobs(
-    random_state=5,
-    n_features=2, #特徴量
+    random_state=4,
+    n_features=2,
     centers=3, #塊
-    cluster_std=1, #ばらつき(標準偏差)
+    cluster_std=2, #ばらつき(標準偏差) cluster:塊
     n_samples=300
 )
 from sklearn.model_selection import train_test_split #train_test_split:学習データ(75%)とテストデータ(25%)に分割する 問題X(説明変数)と答えy(目的変数)
 X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=0) #random_state=0で毎回同じデータが生成されるようにする
 
 
-
-
 #! 2.学習モデルを作る
-from sklearn.linear_model import LogisticRegression
-model=LogisticRegression() 
-print(model.fit(X_train,y_train)) #学習用データを渡して学習する fit:学習する SVC()だけで中のパラメータが表示されない場合もある
-
+from sklearn import svm
+# model=svm.SVC(kernel="rbf",gamma=0.1) #SVC:Support Vector Classification サポートベクターマシン kernel="linear"で線形分離 kernel="rbf"で非線形分離 rbf:Radial Basis Function(放射基底関数) gammaで分類の境界を調整する
+model=svm.SVC(kernel="rbf",gamma="scale") #scale:デフォルト値で分類の境界を調整する auto:データの逆数で分類の境界を調整する 
+model.fit(X_train,y_train) #学習用データを渡して学習する fit:学習する
 
 
 #! 3.予測する
-predicted=model.predict(X_test)
-
+predicted=model.predict(X_test) 
 
 
 #! 4.評価する
 from sklearn.metrics import accuracy_score #accuracy_score:正解率
 score=accuracy_score(y_test,predicted) #正解率
 print("正解率:",score*100,"%")
-
-
 
 
 #! 5.分類の境界を描画する
@@ -62,4 +56,4 @@ def plot_boundary(model, X, Y, target, xlabel, ylabel): #分類を行う学習�
     plt.ylabel(ylabel)
     plt.show()
 
-plot_boundary(model,df[0],df[1],y_test,"df [0]","df [1]")
+plot_boundary(model,df[0],df[1],y_test,"df [0]","df [1]") #分類を行う学習済みモデル、特徴量X、特徴量Y、分類の値、x軸のラベル、y軸のラベル model=Noneで散布図だけを描画
