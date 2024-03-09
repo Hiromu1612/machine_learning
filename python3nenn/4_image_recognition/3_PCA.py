@@ -4,9 +4,11 @@ from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 import matplotlib.pyplot as plt
 
+#! 学習前のデータを可視化 2個の説明変数ならplot_boundary関数だが、64個だから3D散布図で可視化
+
 digits = load_digits()
-X = digits.data
-y = digits.target
+X = digits.data #64×1の画像データ(問題)
+y = digits.target #数字(答え)
 
 # 0〜9の色名を用意する
 numbercolor = ["BLACK","BROWN","RED","DARKORANGE","GOLD",
@@ -25,7 +27,7 @@ df = pd.DataFrame(features3)
 
 # 3D散布図の準備
 fig = plt.figure(figsize=(8, 8))
-ax = fig.add_subplot(projection='3d')
+ax = fig.add_subplot(projection='3d') #ax:軸 projection:投影
 # 3個の特徴量をX,Y,Zにして、各点の数字に対応する色で散布図を描画
 ax.scatter(df[0], df[1], df[2], color=colors)
 
