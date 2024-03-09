@@ -9,6 +9,7 @@
     "hstack",
     "imread",
     "imshow",
+    "iterrows",
     "janome",
     "meshgrid",
     "mplot",

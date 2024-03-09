@@ -1,0 +1,6 @@
+・データの読み込み pandas        read_csv()
+・列の分離         pandas        loc()
+・行の分離         scikit-learn  train_test_split()
+・学習                           fit()
+・予測                           predict()
+・正解率                         accuracy_score()
