@@ -4,3 +4,27 @@
 ・学習                           fit()
 ・予測                           predict()
 ・正解率                         accuracy_score()
+
+
+精度の向上
+    ・不均衡データ: データの分布数に差があるデータ
+        新しいリストを作成し、ラベルを3段階に分ける
+
+    ・全アルゴリズムで比較:
+        import warnings
+        from sklearn.utils import all_estimators
+        all_Algorithm = all_estimators(type_filter="classifier")
+        warnings.filterwarnings("ignore")
+        clf=algorithm()
+
+    ・K分割クロスバリデーション(交差検証): データをK個のグループに分割し、「K-1個を学習用、1個を評価用データする」のをK回繰り返す評価方法
+        from sklearn.model_selection import KFold
+        from sklearn.model_selection import cross_val_score
+        kfold_cv=KFold(n_splits=5,shuffle=True)
+        clf=algorithm()
+
+    ・グリッドサーチ: 指定したハイパラメータ(自分で設定するパラメータ)の全パターンの正解率を比較し、最適な組み合わせを選択する方法
+        parameters=[{}]
+        from sklearn.model_selection import KFold
+        kfold_cv=KFold(n_splits=5,shuffle=True)
+        clf=GridSearchCV(SVC(),parameters,cv=kfold_cv)

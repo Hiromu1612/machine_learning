@@ -6,6 +6,8 @@
     "DARKORANGE",
     "dtreeviz",
     "figsize",
+    "frontalface",
+    "haarcascade",
     "hstack",
     "imread",
     "imshow",

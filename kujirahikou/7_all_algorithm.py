@@ -10,7 +10,7 @@ y=iris_data.loc[:, "Name"] #Name列が正解データ
 
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,train_size=0.8,shuffle=True) #test_size:テストデータの割合 train_size:学習データの割合 shuffle:データをシャッフルするかどうか
 
-#分類のアルゴリズム全てを取得する
+#! 分類のアルゴリズム全てを取得する
 all_Algorithms=all_estimators(type_filter="classifier") #type_filter:分類器のみ取得する 引数なしで全て取得
 warnings.filterwarnings("ignore") #警告文を非表示
 
