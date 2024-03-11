@@ -1,0 +1,25 @@
+Open CV(Open source Computer Vision library): 
+    ・カラーデータの色空間
+        Open CV   :BGR(青・緑・赤)
+        matplotlib:RGB  
+            plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    
+    ・画像の平滑化(ぼかし処理)
+        複雑で細かい模様を検出しないように、画像をぼかす
+            img=cv2.GaussianBlur(img, (ぼかしの大きさ), ぼかしの標準偏差)
+    
+    ・画像の二値化(閾値処理)
+        画像の画素が、閾値より大きければ白、小さければ黒を割り当てる。0が黒、255が白 threshold:閾値
+            img2=cv2.threshold(img, 閾値, 閾値以上の値に対して割り当てる値, THRESH_BINARY_INV)[1] 
+            THRESH_BINARY_INVを指定すると閾値以上の値は0,それ以外は割り当て値で反転
+
+    ・輪郭の抽出
+            contours=cv2.findContours(img2, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)[1]
+        抽出モード retrieve
+            ・RETR_LIST     : 単純に全ての輪郭を検出
+            ・RETR_EXTERNAL : 最も外側の輪郭のみ検出
+            ・RETR_CCOMP    : 階層を考慮し、2レベルの輪郭を検出
+            ・RETR_TREE     : 全ての輪郭を検出し、階層構造を保持
+        輪郭の近似手法
+            ・CHAIN_APPROX_NONE  : 輪郭のすべての点を検出
+            ・CHAIN_APPROX_SIMPL : 必要な点だけを検出し、不要な点を削除
