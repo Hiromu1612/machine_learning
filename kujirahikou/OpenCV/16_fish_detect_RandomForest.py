@@ -3,7 +3,7 @@ import joblib
 
 clf=joblib.load(r"C:\Users\1612h\Machine_learning\kujirahikou\OpenCV\fish.pkl")
 img_last=None
-fish_th=3 #画像を保存するかどうかの閾値
+fish_th=1 #画像を保存するかどうかの閾値
 count=0
 frame_count=0
 
@@ -28,18 +28,17 @@ while True:
             # 抽出した輪郭を矩形で囲み、保存
             img_fish = frame[y:y + h, x:x + w]  # [縦の範囲, 横の範囲]
             
-            
             img_fish=cv2.resize(img_fish, (64, 64))
             img_fish=img_fish.reshape(-1,) #1次元配列に変換
             y_pred=clf.predict([img_fish]) 
             if y_pred[0]==1: #魚が写っている
                 fish_count+=1
                 cv2.rectangle(frame2, (x, y), (x+w, y+h), (0, 255, 0), 2) #(画像, 左上の座標, 右下の座標, 色, 線の太さ)
-        if fish_count>fish_th: #魚が3枚以上写っていたら画像を保存
-            fname=r"C:\Users\1612h\Machine_learning\kujirahikou\OpenCV\fish\fish"+str(count)+".jpg"
+        if fish_count>fish_th: #魚が1枚以上写っていたら画像を保存
+            fname=r"C:\Users\1612h\Machine_learning\kujirahikou\OpenCV\fish_test\fish"+str(count)+".jpg"
             cv2.imwrite(fname, frame) #(ファイル名, 画像データ)
             count+=1
-    if count == 3:
+    if count == 6:
         break
     cv2.imshow('FISH!', frame2)
     

@@ -27,7 +27,7 @@ while True:
             cv2.imwrite(output_file, img_fish)
             number += 1
     count += 1
-    if count == 3:
+    if count == 300:
         break
     img_last=img_b #img_bの画像を記憶
 cap.release()

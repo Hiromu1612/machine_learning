@@ -8,8 +8,8 @@ from sklearn.metrics import accuracy_score
 # 画像の学習サイズやパスを指定
 image_size = (64, 32)
 path = os.path.dirname(os.path.abspath(__file__))
-path_fish = path + '/fish'
-path_nofish = path + '/nofish'
+path_fish = r"C:\Users\1612h\Machine_learning\kujirahikou\OpenCV\fish"
+path_nofish = r"C:\Users\1612h\Machine_learning\kujirahikou\OpenCV\nofish"
 x = [] # 画像データ
 y = [] # ラベルデータ
 
